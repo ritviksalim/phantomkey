@@ -2,8 +2,6 @@
 
 PhantomKey is built to be used by AI agents via the **Model Context Protocol (MCP)**. This guide walks through setting up PhantomKey with the major MCP-capable clients: Claude Desktop, Cursor, Cline, and Continue. Generic MCP clients are also supported.
 
-> **Status (v0.1.0):** the MCP server logic is fully implemented in `phantomkey.mcp.server`, but the **`phantomkey-mcp` script entry point is not yet shipped.** This means the configurations in this document represent the *intended* setup once the entry point lands; today, the workaround is documented in §6 ("Running before the script entry point ships"). This is tracked as a release blocker for v0.2.0.
-
 ---
 
 ## 1. What is MCP, briefly
@@ -105,32 +103,15 @@ A reference is at [`examples/cline_config.json`](../examples/cline_config.json).
 
 ---
 
-## 6. Running before the script entry point ships
+## 6. Alternate launch: `python -m`
 
-Until `phantomkey-mcp` is registered as a script in `pyproject.toml`, you can run the server with a small wrapper. Create a file `~/.phantomkey/run-mcp.sh`:
+If `phantomkey-mcp` is not on your `$PATH` (for example, you are running from a virtualenv that the MCP client doesn't see), the same runner is also reachable via the Python module form:
 
 ```bash
-#!/usr/bin/env bash
-exec /path/to/your/.venv/bin/python -m phantomkey.mcp.server
+/path/to/.venv/bin/python -m phantomkey.mcp
 ```
 
-Make it executable (`chmod +x ~/.phantomkey/run-mcp.sh`) and point your MCP client at it:
-
-```json
-{
-  "mcpServers": {
-    "phantomkey": {
-      "command": "/Users/you/.phantomkey/run-mcp.sh",
-      "env": {
-        "PHANTOMKEY_MASTER_KEY": "your-master-password-here",
-        "PHANTOMKEY_VAULT_DIR": "/Users/you/.phantomkey"
-      }
-    }
-  }
-}
-```
-
-> This requires `phantomkey.mcp.server` to expose a runnable `__main__` block, which is also a release blocker for v0.2.0. Until then, the wrapper script will fail with `No module named '__main__'` and you cannot use PhantomKey via MCP. Track [issue/blocker for v0.2.0] for status.
+This is equivalent to invoking the `phantomkey-mcp` script. Use it as the `command` in your MCP client config if you need to pin to a specific Python interpreter.
 
 ---
 
@@ -152,7 +133,7 @@ If the response contains a literal `{{github.token}}` string instead of a succes
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| MCP client says "phantomkey: connection failed" | `phantomkey-mcp` not on PATH, or wrapper script not executable | Verify with `which phantomkey-mcp` (or run the wrapper manually); check `chmod +x` |
+| MCP client says "phantomkey: connection failed" | `phantomkey-mcp` not on PATH | Verify with `which phantomkey-mcp`; if the MCP client uses a different shell environment, switch the `command` to the absolute path or the `python -m phantomkey.mcp` form (§6) |
 | Agent says "vault is locked" | `PHANTOMKEY_MASTER_KEY` env not set or wrong | Check the env block; remember this is the master *password*, not a key file |
 | Tool list is empty | MCP client didn't reload | Fully quit and restart the client (not just close the window) |
 | `phantomkey_exec` returns an error mentioning `{{...}}` | Placeholder didn't match a credential | Verify `phantomkey list` shows the name exactly; remember syntax is `{{name.field}}` (one dot) |
