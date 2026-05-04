@@ -27,6 +27,7 @@ dev = [
 
 [project.scripts]
 phantomkey = "phantomkey.cli:app"
+phantomkey-mcp = "phantomkey.mcp.__main__:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/phantomkey"]
