@@ -1,0 +1,66 @@
+name: Feature request
+description: Propose a new feature or capability.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement.
+
+        Before filing: PhantomKey is **open-core** — the open-source repository is the local vault, CLI, and MCP server. Cloud sync, team vaults, hosted dashboards, and SSO are paid features developed in a separate proprietary repository. The form below asks where you think this feature belongs; the maintainer may disagree, and that's fine — the question helps frame the discussion.
+
+  - type: checkboxes
+    id: prereqs
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I have searched [existing issues](https://github.com/ritviksalim/phantomkey/issues?q=is%3Aissue) and this is not a duplicate.
+          required: true
+        - label: I have read [CONTRIBUTING.md](https://github.com/ritviksalim/phantomkey/blob/main/CONTRIBUTING.md).
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Start with the underlying need, not the feature. ("I can't share a vault with my team" is more useful than "Please add team vaults.")
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What does the ideal user experience look like? CLI command, MCP tool, config option, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other ways you might solve this problem, and why you prefer this one.
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Where do you think this belongs?
+      options:
+        - Open-source core (this repo) — local-only, single-user functionality
+        - Proprietary cloud product — sync, sharing, team, dashboard, SSO
+        - Unsure / both
+    validations:
+      required: true
+
+  - type: textarea
+    id: threat_model
+    attributes:
+      label: Threat-model implications
+      description: Does this feature change what PhantomKey defends against, or expand the attack surface? If unsure, write "unsure" — the maintainer will assess.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context

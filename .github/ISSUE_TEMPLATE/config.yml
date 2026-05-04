@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/ritviksalim/phantomkey/security/advisories/new
+    about: Do NOT file public issues for security bugs. Use a private GitHub Security Advisory or email ritviksalim@gmail.com. See SECURITY.md for the full policy.
+  - name: Question or discussion
+    url: https://github.com/ritviksalim/phantomkey/discussions
+    about: For general questions, design discussions, or "how do I…" — use Discussions, not Issues.
+  - name: Documentation
+    url: https://github.com/ritviksalim/phantomkey#readme
+    about: README, threat model, architecture, and MCP integration guide.

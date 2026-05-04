@@ -1,0 +1,112 @@
+name: Bug report
+description: Something isn't working as documented or expected.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report.
+
+        > ⚠️ **Security vulnerabilities do not belong here.** If this bug has security implications (could leak credentials, bypass encryption, escalate beyond the MCP tool surface, etc.), **STOP** and report it privately via [GitHub Security Advisory](https://github.com/ritviksalim/phantomkey/security/advisories/new) or email `ritviksalim@gmail.com`. See [SECURITY.md](https://github.com/ritviksalim/phantomkey/blob/main/SECURITY.md).
+
+  - type: checkboxes
+    id: prereqs
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I have searched [existing issues](https://github.com/ritviksalim/phantomkey/issues?q=is%3Aissue) and this is not a duplicate.
+          required: true
+        - label: This is not a security vulnerability. (If it is, I will close this and report privately.)
+          required: true
+        - label: I am running the latest released version, or this bug is reproducible against `main`.
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: PhantomKey version
+      description: Output of `phantomkey --version`, or the commit SHA if installed from source.
+      placeholder: "0.1.0 or commit abc123"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows (WSL)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `python --version`.
+      placeholder: "3.11.7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did the bug surface?
+      options:
+        - CLI
+        - MCP server (called by an agent)
+        - Vault encryption / decryption
+        - HTTP executor
+        - Recovery flow
+        - Audit log
+        - Other (please describe)
+    validations:
+      required: true
+
+  - type: input
+    id: mcp_client
+    attributes:
+      label: MCP client (if applicable)
+      description: Claude Desktop / Cursor / Cline / Continue / other. Include version.
+      placeholder: "Claude Desktop 1.x"
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Exact commands, vault state, agent prompts, or config required to reproduce. Use a disposable test vault (`PHANTOMKEY_VAULT_DIR=/tmp/test-vault`) — never include real credentials.
+      placeholder: |
+        1. `PHANTOMKEY_VAULT_DIR=/tmp/test phantomkey init --no-recovery`
+        2. `phantomkey add example --field token=test123`
+        3. `phantomkey exec-http --url ...`
+        4. ...
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include any error output, stack trace, or unexpected response. Redact anything sensitive.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Anything else that might help — recent changes, related issues, screenshots, etc.
