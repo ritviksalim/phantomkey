@@ -10,7 +10,7 @@ Thank you for considering a contribution. PhantomKey is a security tool, so cont
 
 All contributors must sign the [Contributor License Agreement](CLA.md). It's a one-time, one-click process via [CLA Assistant](https://cla-assistant.io/) — when you open your first PR, the bot will comment with a link.
 
-The CLA grants PhantomKey the right to relicense and dual-license your contribution, which is what enables the open-core commercial product. If that's a dealbreaker for you, please open a discussion first; we're happy to talk it through.
+The CLA grants PhantomKey the right to license, sublicense, and re-license your contribution, including under future open-source or proprietary commercial licenses. PhantomKey currently uses a **source-available license with a free Personal Use grant** ([`LICENSE`](LICENSE)) — not a recognized open-source license. The CLA is what gives the project the optionality to evolve the license over time (toward fuller open-source or toward tighter commercial terms) without re-collecting consent from every past contributor. If that's a dealbreaker for you, please open a discussion first; we're happy to talk it through.
 
 ### 2. Find the right kind of contribution
 
@@ -135,7 +135,7 @@ PhantomKey is currently maintained by a single maintainer ([@ritviksalim](https:
 
 - Feedback on the *threat-model implications* of any security-relevant change.
 - Feedback on whether the test coverage is adequate.
-- Feedback on whether the change belongs in the open-source core or in the proprietary cloud product (if it sounds like the latter, the maintainer will say so and you can decide whether to redirect or pass).
+- Feedback on whether the change belongs in the source-available core (this repo, free Personal Use tier) or in the proprietary cloud product (paid commercial tier). If it sounds like the latter, the maintainer will say so and you can decide whether to redirect or pass.
 
 PRs that pass review are merged via squash-merge to keep `main` history linear.
 
@@ -166,9 +166,9 @@ Open a feature-request issue. Useful framing:
 - **What problem are you trying to solve?** (Not "what feature do you want?" — start with the underlying need.)
 - **What does the ideal user experience look like?**
 - **What alternatives have you considered?**
-- **Is this a fit for the open-source core, or a paid cloud feature?**
+- **Is this a fit for the source-available core (free Personal Use tier), or a paid commercial / cloud feature?**
 
-The last question matters: PhantomKey is open-core, and feature requests that are fundamentally team/sync/dashboard-shaped will likely land in the proprietary cloud product rather than this repo.
+The last question matters: PhantomKey ships in two tiers. Feature requests that are fundamentally team/sync/dashboard-shaped — or that target use within an organization — will likely land in the proprietary commercial product rather than this repo.
 
 ---
 

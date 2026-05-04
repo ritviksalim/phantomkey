@@ -1,26 +1,250 @@
-PhantomKey — Proprietary License
+PhantomKey — Source-Available License with Personal Use Grant
+Version 1.0 (2026-05-04)
 
 Copyright (c) 2026 Ritvik Salim. All rights reserved.
 
-This software and its associated source code, documentation, designs, and
-related materials (collectively, the "Software") are the proprietary and
-confidential property of Ritvik Salim (the "Owner").
+The source code of PhantomKey (the "Software") is published for purposes of
+transparency, security review, and Personal Use as defined below. All other
+rights are reserved by Ritvik Salim (the "Licensor").
 
-All rights in and to the Software are reserved by the Owner. No license,
-express or implied, by estoppel or otherwise, to any intellectual property
-rights is granted by this document.
+This is a source-available license, not an open-source license. It does not
+meet the Open Source Definition. Commercial use requires a separate license
+agreement; see Section 6.
 
-No part of the Software may be reproduced, copied, modified, merged,
-published, distributed, sublicensed, sold, publicly displayed, publicly
-performed, transmitted, or used to create derivative works, in whole or in
-part, in any form or by any means, electronic or mechanical, without the
-prior express written permission of the Owner.
+> THIS LICENSE IS A DRAFT AND IS PENDING LEGAL REVIEW. CONSULT QUALIFIED
+> LEGAL COUNSEL BEFORE RELYING ON IT FOR ANY MATERIAL DECISION.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN
-AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-For licensing inquiries, contact: ritviksalim@gmail.com
+--------------------------------------------------------------------------------
+1. DEFINITIONS
+
+  "Software" means the source code, object code, documentation, designs, and
+  related materials published in this repository, in any medium and any form,
+  including modifications and derivative works thereof.
+
+  "You" (or "Your") means an individual exercising permissions granted by this
+  License. Where the term applies to a Legal Entity (e.g., for the source
+  review grant in Section 3), "You" includes that entity.
+
+  "Personal Use" means use of the Software by a single natural person, on
+  computing devices that the person owns or controls, for that person's own
+  personal, private, non-commercial purposes. Personal Use specifically
+  includes:
+
+    (a) personal experimentation, learning, and self-education;
+    (b) management of credentials owned by the person for accounts that
+        belong to that person;
+    (c) personal hobby projects from which the person derives no revenue,
+        salary, fee, or other consideration;
+    (d) academic coursework where the person is a student.
+
+  Personal Use specifically EXCLUDES, and Commercial Use INCLUDES, all of the
+  following, regardless of whether the user pays for the Software:
+
+    (e) any use within or for the benefit of a for-profit or non-profit
+        organization, including the user's employer;
+    (f) any use in the course of consulting, contracting, freelancing, or
+        other client work;
+    (g) any use to generate revenue, donations, advertising income, sponsor
+        income, or other consideration;
+    (h) any use in production environments that serve other people (whether
+        for pay or free of charge);
+    (i) any use that is part of, or in support of, a product or service
+        offered by a third party;
+    (j) any use to manage credentials owned by anyone other than the user;
+    (k) offering the Software, or any modified version, as a hosted or
+        managed service to others;
+    (l) sublicensing, sale, or commercial redistribution of the Software.
+
+  "Commercial Use" means any use of the Software that is not Personal Use, as
+  defined above.
+
+  "Contribution" has the meaning given in the PhantomKey Contributor License
+  Agreement (CLA.md).
+
+  "Source Review" means the act of reading, studying, and analyzing the
+  source code of the Software, including:
+
+    (m) inspecting the cryptographic implementation for correctness;
+    (n) verifying the absence of telemetry, exfiltration, or backdoors;
+    (o) compiling the Software from source for the purpose of comparing
+        against an officially-distributed binary;
+    (p) running the Software in a private, isolated test environment for
+        the sole purpose of evaluating its security or correctness.
+
+
+--------------------------------------------------------------------------------
+2. PERSONAL USE GRANT
+
+  Subject to the terms of this License, the Licensor grants You, the
+  individual receiving this Software, a worldwide, royalty-free,
+  non-exclusive, non-sublicensable, revocable license to:
+
+    (a) install and run the Software on devices You own or control, for
+        Personal Use as defined in Section 1;
+    (b) modify the Software for Your own Personal Use only, provided that
+        such modifications are not redistributed (except under Section 4);
+    (c) make a reasonable number of personal backup copies of the Software.
+
+  This grant terminates automatically and without notice if You engage in
+  any Commercial Use without a separate commercial license from the Licensor
+  (see Section 6).
+
+
+--------------------------------------------------------------------------------
+3. SOURCE REVIEW GRANT
+
+  Subject to the terms of this License, the Licensor grants You and any Legal
+  Entity You represent a worldwide, royalty-free, non-exclusive,
+  non-sublicensable, revocable license to perform Source Review of the
+  Software, regardless of whether You or Your Legal Entity intend to acquire
+  a Personal Use or Commercial Use license.
+
+  The Source Review grant exists so that security researchers, prospective
+  customers, journalists, and the general public can verify the security
+  properties claimed by the Licensor. Source Review does not include any
+  right to use the Software in production, redistribute it, or modify it
+  beyond what is necessary to conduct Source Review itself.
+
+
+--------------------------------------------------------------------------------
+4. CONTRIBUTIONS AND PUBLIC FORKS
+
+  Forking this repository on a public source-control hosting service such
+  as GitHub is permitted to the extent that the hosting service's terms of
+  service grant such permission, and only for the following purposes:
+
+    (a) preparing a Contribution as defined in the CLA;
+    (b) Source Review;
+    (c) Personal Use modifications, provided the fork is not used or
+        promoted as an alternative distribution.
+
+  All other rights, including the right to redistribute the Software in
+  source or object form, are reserved.
+
+  By submitting a Contribution to the Licensor (whether via pull request,
+  patch, email, or otherwise), You agree to the terms of the PhantomKey
+  Contributor License Agreement (CLA.md). The Licensor may include Your
+  Contribution in the Software under the terms of this License or any other
+  license, including a future open-source license.
+
+
+--------------------------------------------------------------------------------
+5. RESERVATION OF RIGHTS
+
+  All rights not expressly granted in Sections 2, 3, and 4 are reserved by
+  the Licensor. Without limitation, You do NOT receive any of the following
+  under this License:
+
+    (a) any right to Commercial Use of the Software;
+    (b) any right to redistribute the Software, whether modified or
+        unmodified, in source or object form;
+    (c) any right to sublicense the Software;
+    (d) any right to use the trademarks, service marks, trade names, or
+        logos of the Licensor or the Software (including the name
+        "PhantomKey");
+    (e) any patent license, express or implied. The Licensor does not waive
+        or grant any patent rights through this License.
+
+
+--------------------------------------------------------------------------------
+6. COMMERCIAL LICENSE
+
+  For any Commercial Use, You must obtain a separate written commercial
+  license from the Licensor before using the Software for that purpose.
+
+  To inquire about a commercial license, contact:
+
+      Email:    ritviksalim@gmail.com
+      Subject:  PhantomKey Commercial License Inquiry
+
+  Pricing, terms, and availability of commercial licenses are at the sole
+  discretion of the Licensor.
+
+
+--------------------------------------------------------------------------------
+7. TERMINATION
+
+  Your rights under this License terminate automatically and without notice
+  if You materially breach any term of this License, including but not
+  limited to engaging in Commercial Use without a separate commercial
+  license. Upon termination, You must cease all use of the Software and
+  destroy all copies in Your possession or control, except for copies
+  retained for Source Review purposes under Section 3.
+
+  Sections 1, 5, 6, 8, 9, and 10 survive termination.
+
+
+--------------------------------------------------------------------------------
+8. NO WARRANTY
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, AND ABSENCE
+  OF DEFECTS OR ERRORS. THE LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL
+  MEET YOUR REQUIREMENTS OR THAT ITS OPERATION WILL BE UNINTERRUPTED OR
+  ERROR-FREE.
+
+  YOU ASSUME THE ENTIRE RISK ARISING OUT OF THE USE OF THE SOFTWARE,
+  INCLUDING ANY RISK OF LOSS OR EXPOSURE OF SECRETS, CREDENTIALS, OR OTHER
+  SENSITIVE DATA.
+
+
+--------------------------------------------------------------------------------
+9. LIMITATION OF LIABILITY
+
+  IN NO EVENT AND UNDER NO LEGAL THEORY, WHETHER IN TORT, CONTRACT,
+  NEGLIGENCE, OR OTHERWISE, SHALL THE LICENSOR BE LIABLE FOR ANY DIRECT,
+  INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY
+  DAMAGES WHATSOEVER ARISING OUT OF OR RELATED TO THIS LICENSE OR YOUR USE
+  OR INABILITY TO USE THE SOFTWARE, EVEN IF THE LICENSOR HAS BEEN ADVISED
+  OF THE POSSIBILITY OF SUCH DAMAGES.
+
+  WHERE LIABILITY CANNOT BE EXCLUDED BY APPLICABLE LAW, THE LICENSOR'S
+  AGGREGATE LIABILITY UNDER THIS LICENSE SHALL NOT EXCEED ONE HUNDRED U.S.
+  DOLLARS ($100.00).
+
+
+--------------------------------------------------------------------------------
+10. MISCELLANEOUS
+
+  This License is governed by and construed in accordance with the laws of
+  the State of [STATE], United States, without regard to its conflict of
+  laws principles. The exclusive venue for any dispute arising under this
+  License shall be the state or federal courts located in [COUNTY], [STATE].
+
+  > TODO before adoption: fill in jurisdiction, with counsel.
+
+  If any provision of this License is held to be unenforceable, the
+  remainder of this License shall remain in full force and effect.
+
+  This License constitutes the entire agreement between You and the
+  Licensor concerning the Software, and supersedes all prior agreements
+  concerning the same subject matter, except for any separate written
+  commercial license that You have entered into with the Licensor.
+
+  The Licensor reserves the right to publish updated versions of this
+  License. The Software is licensed under the version of this License
+  in effect at the time You obtained the Software, unless You agree in
+  writing to a different version.
+
+
+--------------------------------------------------------------------------------
+SUMMARY (informational, not part of the License)
+
+  ✅ You may:
+     - Read the source code, freely
+     - Run PhantomKey on your own machine for your own personal accounts
+     - Modify it for your own personal use
+     - Submit pull requests (subject to the CLA)
+     - Compile from source to verify the binary
+
+  ❌ You may not (without a commercial license):
+     - Use it at your job, even if your job is unrelated to PhantomKey
+     - Use it for any client / freelance / consulting work
+     - Embed it in any product or service you offer to others
+     - Run it as a hosted or managed service for others
+     - Redistribute it, modified or unmodified
+     - Use the PhantomKey name or logo to brand a fork or alternative
+
+  💼 For commercial use: ritviksalim@gmail.com (subject "PhantomKey Commercial License Inquiry")
