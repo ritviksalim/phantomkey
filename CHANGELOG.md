@@ -11,23 +11,13 @@ PhantomKey is pre-1.0; the public API may change between minor versions until v1
 
 ## [Unreleased]
 
-### Added
-- `README.md` documenting the CLI surface, MCP integration, and security model
-- `SECURITY.md` with coordinated-disclosure policy and concrete response timelines
-- `CONTRIBUTING.md` with development setup, TDD requirement, and PR expectations
-- `CLA.md` — draft Individual Contributor License Agreement (pending legal review)
-
-### Changed
-- License is in transition from proprietary to Apache 2.0 as part of the open-core launch (target license confirmed; legal review pending before swap)
-
-### Notes
-- Forward-references in `README.md` to `docs/threat-model.md`, `docs/architecture.md`, and `docs/mcp-integration.md` will resolve when those docs land in subsequent PRs
+_No unreleased changes. Cut a new section above this line as work lands._
 
 ---
 
-## [0.1.0] — 2026-04-25
+## [0.1.0] — 2026-05-04
 
-Initial commit. Core functionality is implemented and tested.
+First public release. Open-source core is feature-complete for local single-user use; cloud sync and team features are deferred to the proprietary cloud product.
 
 ### Added
 
@@ -51,7 +41,7 @@ Initial commit. Core functionality is implemented and tested.
 - `phantomkey exec-http --url ... --method ... --header ... --body ...` — execute an HTTP request with blind credential injection from the CLI
 
 #### Executor
-- Template resolution for `{{cred.name.field}}` placeholders in URLs, headers, and bodies
+- Template resolution for `{{credential_name.field_name}}` placeholders in URLs, headers, and bodies
 - HTTP execution via `httpx` with configurable timeout
 - Response sanitization that redacts any secret values that appear in the response body before returning it
 
@@ -73,6 +63,26 @@ Initial commit. Core functionality is implemented and tested.
 
 #### Registration
 - Email-capture-on-init webhook for waitlist / user-acquisition
+
+#### MCP runner
+- `phantomkey-mcp` console script and `python -m phantomkey.mcp` module entry point so the server can be launched directly by Claude Desktop, Cursor, Cline, and other MCP-compatible clients
+- Stdio transport via the official `mcp` SDK
+
+#### Documentation
+- `README.md` — overview, CLI reference, MCP quickstart, security-model summary
+- `SECURITY.md` — coordinated-disclosure policy with 48-hour-ack / 5-day-triage / 30-day-fix-for-high-severity timelines
+- `CONTRIBUTING.md` — strict TDD requirement, dev setup, PR conventions, open-core feature-routing question
+- `CLA.md` — Apache-ICLA-derived individual Contributor License Agreement (pending legal review)
+- `docs/threat-model.md` — trust model, ten adversary classes, defenses (§5), explicit non-defenses (§6), the blind-injection invariant (§7), eight tracked weaknesses (W-1…W-8), pinned cryptographic-parameter table
+- `docs/architecture.md` — module map, two-tier key hierarchy, vault file format, four-phase request flow, MCP tool surface, extension points, open-core boundary
+- `docs/mcp-integration.md` — Claude Desktop / Cursor / Cline setup; verification flow; common-issues table; auto-approval guidance
+- `examples/` — copy-pasteable client configs and a four-scenario sample agent session
+- `.github/ISSUE_TEMPLATE/` and `.github/PULL_REQUEST_TEMPLATE.md` — YAML-form bug report and feature request, PR template enforcing TDD / threat-model / open-core scope
+
+### Changed
+- **License changed from proprietary to Apache License 2.0.** This is a one-way change consistent with the open-core launch and required for distribution via PyPI. Apache 2.0 was chosen over MIT for its explicit patent grant.
+- pyproject.toml: declared license metadata, project URLs, classifiers, keywords, and authors per PEP 621 for proper PyPI display
+- All source-file headers updated from "Proprietary and confidential" to SPDX `Apache-2.0`
 
 ### Security
 

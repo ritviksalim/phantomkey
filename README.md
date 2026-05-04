@@ -198,7 +198,9 @@ Contributions to this repository are welcome and require signing the [Contributo
 
 ## License
 
-See [`LICENSE`](LICENSE). PhantomKey is currently transitioning from a proprietary license to an open-source license as part of the open-core launch. The intended target is **Apache 2.0** for this repository.
+PhantomKey is licensed under the **[Apache License 2.0](LICENSE)**. The Apache 2.0 license includes an explicit patent grant to users of the software, which is the standard choice for a security-relevant open-source project.
+
+Cloud sync, team vaults, hosted audit dashboard, and SSO are part of the proprietary cloud product and are developed in a separate, non-public repository.
 
 ---
 

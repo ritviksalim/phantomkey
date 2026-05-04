@@ -6,6 +6,26 @@ build-backend = "hatchling.build"
 name = "phantomkey"
 version = "0.1.0"
 description = "AI-native password manager for AI agents — blind credential injection"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Ritvik Salim", email = "ritviksalim@gmail.com" },
+]
+keywords = ["mcp", "password-manager", "ai-agents", "llm", "credentials", "security"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+]
 requires-python = ">=3.11"
 dependencies = [
     "typer>=0.12",
@@ -28,6 +48,12 @@ dev = [
 [project.scripts]
 phantomkey = "phantomkey.cli:app"
 phantomkey-mcp = "phantomkey.mcp.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/ritviksalim/phantomkey"
+Repository = "https://github.com/ritviksalim/phantomkey"
+Issues = "https://github.com/ritviksalim/phantomkey/issues"
+Changelog = "https://github.com/ritviksalim/phantomkey/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/phantomkey"]
