@@ -28,13 +28,23 @@ The LLM sees the placeholders, the URL, the method, and the sanitized response. 
 
 ## Status
 
-**Pre-release (v0.1.0).** Local-only vault and MCP server are functional. Not yet published to PyPI. Cloud sync, team vaults, and audit dashboard are on the roadmap (paid tier).
+**v0.1.0 — first public release.** Local-only vault and MCP server are functional and published on PyPI. Cloud sync, team vaults, and audit dashboard are on the roadmap (commercial tier).
 
 ---
 
 ## Install
 
-> Not yet published to PyPI. For now, install from source:
+```bash
+pipx install phantomkey
+```
+
+Or with `pip`:
+
+```bash
+pip install phantomkey
+```
+
+Or from source:
 
 ```bash
 git clone https://github.com/ritviksalim/phantomkey.git
@@ -44,11 +54,7 @@ pip install -e .
 
 Requires Python 3.11+.
 
-Once published, install will be:
-
-```bash
-pipx install phantomkey
-```
+> **License reminder:** PhantomKey is **free for personal use** and **requires a paid license for commercial use** (work, client, hosted, or product use). See [`LICENSE`](LICENSE) for the exact terms.
 
 ---
 

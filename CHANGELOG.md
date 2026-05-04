@@ -11,19 +11,13 @@ PhantomKey is pre-1.0; the public API may change between minor versions until v1
 
 ## [Unreleased]
 
-### Changed
-- License model formalized as **source-available with a free Personal Use grant** (drafted in `LICENSE` v1.0). Replaces the prior "all rights reserved, no rights granted" stance and the briefly-explored Apache 2.0 path. Personal use by individuals is now explicitly free; commercial use (work, client, hosted, or product use) requires a separate paid license. Source review remains permitted for all readers regardless of tier.
-- `README.md` License and Project-shape sections rewritten to reflect the two-tier model
-- `CONTRIBUTING.md` updated to describe the project as source-available rather than open-core/open-source
-
-### Notes
-- The `LICENSE` is a draft pending legal review. Jurisdiction (§10) is unfilled.
+_No unreleased changes. Cut a new section above this line as work lands._
 
 ---
 
-## [0.1.0] — 2026-04-25
+## [0.1.0] — 2026-05-04
 
-Initial commit. Core functionality is implemented and tested.
+First public release. Published on PyPI as `phantomkey`. Source-available with a free Personal Use grant; commercial use requires a paid license.
 
 ### Added
 
