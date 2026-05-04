@@ -11,14 +11,14 @@ The moment a password, API token, or OAuth secret enters an LLM prompt, it is ef
 ## How it works
 
 1. You store credentials locally in an encrypted vault (AES-256-GCM, Scrypt-derived key).
-2. You give the agent **placeholders** instead of secrets: `Authorization: Bearer {{cred.github.token}}`.
+2. You give the agent **placeholders** instead of secrets: `Authorization: Bearer {{github.token}}`. The placeholder syntax is `{{credential_name.field_name}}` — `github` is the name you used with `phantomkey add github`, and `token` is a field name within that credential.
 3. The agent calls PhantomKey's `phantomkey_exec` MCP tool with the templated request.
 4. PhantomKey resolves placeholders against the vault, executes the HTTP request itself, sanitizes the response of any secret values, and returns the result.
 
 The LLM sees the placeholders, the URL, the method, and the sanitized response. It never sees the secret.
 
 ```
-   ┌──────────┐    {{cred.x}}     ┌────────────┐    real secret     ┌─────────┐
+   ┌──────────┐    {{name.field}}  ┌────────────┐    real secret     ┌─────────┐
    │  Agent   │  ───────────────→ │ PhantomKey │  ───────────────→  │   API   │
    │  (LLM)   │  ←─── sanitized ── │   Vault    │  ←──── response ── │         │
    └──────────┘     response       └────────────┘                    └─────────┘
@@ -83,7 +83,7 @@ phantomkey get github   # shows metadata only — never the secret value
 ```bash
 phantomkey exec-http \
   --url https://api.github.com/user \
-  --header "Authorization: Bearer {{cred.github.token}}"
+  --header "Authorization: Bearer {{github.token}}"
 ```
 
 ### 5. Wire it up to an AI agent (MCP)
