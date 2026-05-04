@@ -1,0 +1,16 @@
+{
+  "_comment_1": "PhantomKey config snippet for the Cline VS Code extension. Open the Cline panel -> MCP Servers -> Edit MCP Settings. Merge the 'mcpServers.phantomkey' entry below into your existing cline_mcp_settings.json.",
+  "_comment_2": "Replace 'your-master-password-here' and '/Users/you/.phantomkey' with your real values.",
+  "_comment_3": "autoApprove is intentionally empty. Adding 'phantomkey_status', 'phantomkey_list', 'phantomkey_get_meta' is safe (metadata only). NEVER auto-approve 'phantomkey_exec' or 'phantomkey_delete'.",
+  "mcpServers": {
+    "phantomkey": {
+      "command": "phantomkey-mcp",
+      "env": {
+        "PHANTOMKEY_MASTER_KEY": "your-master-password-here",
+        "PHANTOMKEY_VAULT_DIR": "/Users/you/.phantomkey"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
