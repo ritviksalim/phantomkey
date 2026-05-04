@@ -1,0 +1,14 @@
+{
+  "_comment_1": "PhantomKey config snippet for Claude Desktop. Merge the 'mcpServers.phantomkey' entry below into your existing claude_desktop_config.json. Path: macOS ~/Library/Application Support/Claude/claude_desktop_config.json | Windows %APPDATA%\\Claude\\claude_desktop_config.json | Linux ~/.config/Claude/claude_desktop_config.json",
+  "_comment_2": "Replace 'your-master-password-here' with your actual master password. Replace '/Users/you/.phantomkey' with your vault directory. Restart Claude Desktop after saving.",
+  "_comment_3": "WARNING: this file stores the master password in plaintext. Set chmod 600 on it. Do not sync to git. See docs/mcp-integration.md section 9 for hardening.",
+  "mcpServers": {
+    "phantomkey": {
+      "command": "phantomkey-mcp",
+      "env": {
+        "PHANTOMKEY_MASTER_KEY": "your-master-password-here",
+        "PHANTOMKEY_VAULT_DIR": "/Users/you/.phantomkey"
+      }
+    }
+  }
+}

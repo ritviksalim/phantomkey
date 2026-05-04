@@ -1,0 +1,12 @@
+{
+  "_comment_1": "PhantomKey config snippet for Cursor 0.40+. In Cursor: Settings -> Features -> MCP -> Add new MCP server. The fields below match Cursor's UI prompts.",
+  "_comment_2": "Replace 'your-master-password-here' and '/Users/you/.phantomkey' with your real values.",
+  "_comment_3": "WARNING: master password in plaintext. Do not commit this file to version control.",
+  "name": "phantomkey",
+  "type": "stdio",
+  "command": "phantomkey-mcp",
+  "env": {
+    "PHANTOMKEY_MASTER_KEY": "your-master-password-here",
+    "PHANTOMKEY_VAULT_DIR": "/Users/you/.phantomkey"
+  }
+}
