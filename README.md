@@ -173,10 +173,10 @@ Full architecture: [`docs/architecture.md`](docs/architecture.md).
 
 ## Project shape
 
-PhantomKey is **open-core**:
+PhantomKey ships in two tiers:
 
-- This repository contains the **free, open-source** local vault, CLI, and MCP server.
-- Cloud sync, team vaults, hosted audit dashboard, and SSO are paid features developed in a separate repository.
+- **Personal (free).** This repository — the local vault, CLI, and MCP server. Source is published for transparency. Free for individual personal use under the [LICENSE](LICENSE).
+- **Commercial / Cloud (paid).** Multi-device sync, team vaults, hosted audit dashboard, SSO, and any use within a company or in revenue-generating work. Developed in a separate proprietary repository. Contact ritviksalim@gmail.com for licensing.
 
 Contributions to this repository are welcome and require signing the [Contributor License Agreement](CLA.md).
 
@@ -198,7 +198,15 @@ Contributions to this repository are welcome and require signing the [Contributo
 
 ## License
 
-See [`LICENSE`](LICENSE). PhantomKey is currently transitioning from a proprietary license to an open-source license as part of the open-core launch. The intended target is **Apache 2.0** for this repository.
+PhantomKey is **source-available**, not open-source.
+
+- **Free for personal use** — install it on your own machine, manage your own credentials, modify it for your own needs. See [`LICENSE`](LICENSE) §2 for the full grant.
+- **Commercial use requires a paid license** — including any use at your job, in client work, in a product you ship, or as a hosted service. See [`LICENSE`](LICENSE) §6 for how to obtain one.
+- **Source review is always permitted** — security researchers and prospective customers can read the code freely to verify the security claims, regardless of license tier. See [`LICENSE`](LICENSE) §3.
+
+The full terms are in [`LICENSE`](LICENSE) and a plain-language summary at the bottom of that file.
+
+> The current LICENSE is a draft pending legal review. The grants above are intended to remain stable; specific clauses may evolve.
 
 ---
 

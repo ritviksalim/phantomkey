@@ -11,17 +11,13 @@ PhantomKey is pre-1.0; the public API may change between minor versions until v1
 
 ## [Unreleased]
 
-### Added
-- `README.md` documenting the CLI surface, MCP integration, and security model
-- `SECURITY.md` with coordinated-disclosure policy and concrete response timelines
-- `CONTRIBUTING.md` with development setup, TDD requirement, and PR expectations
-- `CLA.md` — draft Individual Contributor License Agreement (pending legal review)
-
 ### Changed
-- License is in transition from proprietary to Apache 2.0 as part of the open-core launch (target license confirmed; legal review pending before swap)
+- License model formalized as **source-available with a free Personal Use grant** (drafted in `LICENSE` v1.0). Replaces the prior "all rights reserved, no rights granted" stance and the briefly-explored Apache 2.0 path. Personal use by individuals is now explicitly free; commercial use (work, client, hosted, or product use) requires a separate paid license. Source review remains permitted for all readers regardless of tier.
+- `README.md` License and Project-shape sections rewritten to reflect the two-tier model
+- `CONTRIBUTING.md` updated to describe the project as source-available rather than open-core/open-source
 
 ### Notes
-- Forward-references in `README.md` to `docs/threat-model.md`, `docs/architecture.md`, and `docs/mcp-integration.md` will resolve when those docs land in subsequent PRs
+- The `LICENSE` is a draft pending legal review. Jurisdiction (§10) is unfilled.
 
 ---
 
