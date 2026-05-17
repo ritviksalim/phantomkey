@@ -11,7 +11,9 @@ PhantomKey is pre-1.0; the public API may change between minor versions until v1
 
 ## [Unreleased]
 
-_No unreleased changes. Cut a new section above this line as work lands._
+### Added
+
+- `phantomkey --version` flag — prints the installed version and exits. Previously `bug_report.yml` and `CONTRIBUTING.md` referenced this command, but it was not implemented.
 
 ---
 

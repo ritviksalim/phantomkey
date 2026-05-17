@@ -204,3 +204,21 @@ class TestUpdate:
             env=initialized_env,
         )
         assert result.exit_code == 0
+
+
+class TestVersion:
+    def test_version_flag_exits_zero(self, runner, app):
+        result = runner.invoke(app, ["--version"])
+        assert result.exit_code == 0
+
+    def test_version_flag_prints_version(self, runner, app):
+        from phantomkey import __version__
+
+        result = runner.invoke(app, ["--version"])
+        assert __version__ in result.output
+
+    def test_version_flag_needs_no_vault(self, runner, app):
+        # --version must work without an initialized vault or master key.
+        result = runner.invoke(app, ["--version"], env={})
+        assert result.exit_code == 0
+        assert "phantomkey" in result.output.lower()
