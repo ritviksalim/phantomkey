@@ -82,6 +82,45 @@ PHANTOMKEY_MASTER_KEY="your-test-password" python -m phantomkey.mcp.server
 
 ---
 
+## Release and production testing
+
+The `pytest` suite above runs against the **working tree** — an editable install of whatever is checked out. That verifies the code. It does **not** verify the *artifact users actually receive*: the built wheel, its packaging metadata, its `[project.scripts]` entry points, and its dependency resolution on a clean machine.
+
+Before relying on a build — and **especially after every PyPI release** — run a **clean-room test** of the published package:
+
+```bash
+# 1. Fresh folder, fresh venv — isolated from the dev repo entirely
+mkdir ~/phantomkey-clean-test && cd ~/phantomkey-clean-test
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 2. Install the REAL published release from PyPI (not -e, not the local tree)
+pip install phantomkey
+
+# 3. Smoke-test the shipped artifact
+phantomkey --help                        # CLI entry point resolves, lists all commands
+pip show phantomkey | grep -i version    # confirms the version you released installed
+PHANTOMKEY_VAULT_DIR=~/phantomkey-testvault phantomkey init   # full interactive flow
+#   ... exercise add / get / list / exec-http against the test vault ...
+
+# MCP runner: starts and blocks on stdio with a vault + master key; Ctrl-C to stop.
+PHANTOMKEY_VAULT_DIR=~/phantomkey-testvault PHANTOMKEY_MASTER_KEY=... phantomkey-mcp
+
+# 4. Tear down
+deactivate && rm -rf ~/phantomkey-clean-test ~/phantomkey-testvault
+```
+
+What this catches that `pytest` cannot:
+
+- A missing or misnamed `[project.scripts]` entry — the CLI or MCP runner not actually on `PATH` after install.
+- Files omitted from the wheel (`MANIFEST` / `hatch` build-target gaps).
+- A dependency that resolves in your dev environment but not from a clean index.
+- A version string mismatch between the tag, `pyproject.toml`, and the published package.
+
+Always point production testing at an isolated `PHANTOMKEY_VAULT_DIR`, never your real `~/.phantomkey` vault. `init` and `recover` require an interactive terminal by design, so they cannot be scripted — run them by hand.
+
+---
+
 ## Coding standards
 
 ### Test-Driven Development is required
