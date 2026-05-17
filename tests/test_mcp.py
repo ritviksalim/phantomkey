@@ -156,3 +156,48 @@ class TestMCPTools:
         assert exec_tool is not None
         schema = exec_tool.inputSchema
         assert "url" in schema.get("properties", {})
+
+@pytest.mark.asyncio
+class TestMCPBrowserTool:
+    async def test_browser_tool_is_listed(self, server):
+        tools = await _list_tools(server)
+        assert "phantomkey_browser" in {t.name for t in tools}
+
+    async def test_browser_tool_has_actions_schema(self, server):
+        tools = await _list_tools(server)
+        browser_tool = next(t for t in tools if t.name == "phantomkey_browser")
+        assert "actions" in browser_tool.inputSchema.get("properties", {})
+
+    async def test_browser_tool_blind_injection(self, server, monkeypatch):
+        """The real value reaches the browser; the MCP response keeps the placeholder."""
+        from contextlib import contextmanager
+        from phantomkey.executor import browser_playwright
+
+        calls = []
+
+        class FakeDriver:
+            def navigate(self, url):
+                calls.append(("navigate", url))
+
+            def fill(self, selector, value):
+                calls.append(("fill", selector, value))
+
+            def click(self, selector):
+                calls.append(("click", selector))
+
+            def text_content(self, selector):
+                return ""
+
+        @contextmanager
+        def fake_browser(headless=True):
+            yield FakeDriver()
+
+        monkeypatch.setattr(browser_playwright, "playwright_browser", fake_browser)
+
+        result = await _call_tool(server, "phantomkey_browser", {
+            "actions": [{"action": "fill", "selector": "#pw", "value": "{{stripe.secret_key}}"}],
+        })
+        text = result[0].text
+        assert ("fill", "#pw", "sk_test_123") in calls
+        assert "sk_test_123" not in text
+        assert "{{stripe.secret_key}}" in text

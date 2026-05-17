@@ -318,5 +318,36 @@ def exec_http(
         raise typer.Exit(code=1)
 
 
+@app.command("exec-browser")
+def exec_browser(
+    actions: Annotated[str, typer.Option("--actions", help="JSON array of browser actions")],
+    headed: Annotated[bool, typer.Option("--headed", help="Show the browser window (default: headless)")] = False,
+):
+    """Execute browser actions with blind credential injection."""
+    import json
+
+    from phantomkey.executor.browser import execute_browser
+    from phantomkey.executor.browser_playwright import playwright_browser
+
+    vault = _get_vault()
+
+    try:
+        action_list = json.loads(actions)
+    except json.JSONDecodeError as e:
+        console.print(f"[red]Invalid --actions JSON: {e}[/red]")
+        raise typer.Exit(code=1)
+
+    try:
+        with playwright_browser(headless=not headed) as driver:
+            result = execute_browser(vault, action_list, driver)
+        console.print(json.dumps(result, indent=2))
+    except KeyError as e:
+        console.print(f"[red]Credential error: {e}[/red]")
+        raise typer.Exit(code=1)
+    except (ValueError, RuntimeError) as e:
+        console.print(f"[red]Browser execution failed: {e}[/red]")
+        raise typer.Exit(code=1)
+
+
 if __name__ == "__main__":
     app()
