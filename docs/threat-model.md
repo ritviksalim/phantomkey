@@ -82,6 +82,7 @@ Tools exposed to the agent (`mcp/server.py`):
 | `phantomkey_update` | No — same |
 | `phantomkey_delete` | No — name only |
 | `phantomkey_exec` | No — sanitized response (see §5.3) |
+| `phantomkey_browser` | No — placeholders resolved into the browser; result keeps placeholders, extracted text sanitized (see §5.8) |
 
 **There is no `phantomkey_get_secret` tool. By design.**
 
@@ -151,6 +152,25 @@ If the destination API echoes the credential back (e.g., `{"error": "invalid tok
 The recovery credential derives a parallel KEK that encrypts the same DEK. Recovery does not require the master password, only the recovery phrase. After successful recovery, both the master password and the recovery credential are rotated.
 
 **Residual risk:** vaults initialized with `--no-recovery` are unrecoverable on master password loss. **By design.**
+
+### 5.8 Browser-based blind injection (A1, A2)
+
+The `phantomkey_browser` tool / `exec-browser` command extend blind injection from HTTP requests to **browser form fields**, for sites that cannot be driven by a raw HTTP call (JavaScript SPAs, login and registration pages).
+
+**Mechanism (`executor/browser.py`):**
+
+- The agent emits a list of browser actions (`navigate`, `fill`, `click`, `read`). `fill` values and `navigate` URLs may contain `{{cred.field}}` placeholders.
+- `execute_browser` resolves placeholders inside the PhantomKey process and passes the **real value to the browser driver** (`executor/browser_playwright.py`, a Playwright wrapper shipped as the optional `browser` extra).
+- The result returned to the agent echoes the **original actions with placeholders intact** — the resolved value is never written into the result.
+- Text extracted with the `read` action is run through the response sanitizer (§5.3) before being returned.
+
+**The §7 invariant holds:** the plaintext credential reaches the browser, never the agent's context.
+
+**Residual risks specific to the browser path:**
+
+- **The destination page can read the injected value.** Once a secret is typed into a DOM field, any JavaScript on that page can read `element.value` and exfiltrate it. This is the browser analogue of §5.2's residual risk — to authenticate, the value *must* enter the field, and a hostile page can steal it. Inject credentials only into pages you trust, exactly as you would only send a credential to an API host you trust. Tracked as W-10.
+- **Screenshots can leak the value as pixels.** PhantomKey's browser executor never screenshots, but the surrounding MCP client or agent may. A `fill` into a `type="password"` field renders masked dots; a `fill` into a `type="text"` field renders the secret in plaintext on screen. The sanitizer redacts *text*, not *pixels*. Tracked as W-9.
+- **Headed mode exposes the value to the physical screen** (shoulder-surfing, screen recording). Headless is the default; `--headed` is opt-in.
 
 ---
 
@@ -231,6 +251,8 @@ If you find a code path that violates this invariant, please report it via [`SEC
 | W-6 | Recovery wordlist is curated, not full BIP-39 | Replace with the canonical 2048-word list before v1.0 |
 | W-7 | Audit log is plaintext on disk | Encrypt or hash-chain; current plaintext form is fine for personal use, problematic for regulated environments |
 | W-8 | Master password lives in env var (`PHANTOMKEY_MASTER_KEY`) when running as MCP server | Add OS keychain unlock and biometric prompts |
+| W-9 | Browser screenshots can capture an injected secret as pixels (especially `type="text"` fields); the text sanitizer cannot redact images | Document; prefer `type="password"` fields; explore DOM-level masking after `fill`; warn in headed mode |
+| W-10 | A hostile destination *page* can read an injected credential from the DOM via JavaScript | Document as inherent (parallels W-2 for HTTP); planned per-credential allowed-host lists should also gate `navigate` / `fill` targets |
 
 ---
 
