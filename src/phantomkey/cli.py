@@ -49,6 +49,29 @@ def _require_tty():
         raise typer.Exit(code=1)
 
 
+def _version_callback(value: bool) -> None:
+    if value:
+        from phantomkey import __version__
+
+        console.print(f"phantomkey {__version__}")
+        raise typer.Exit()
+
+
+@app.callback()
+def main(
+    version: Annotated[
+        Optional[bool],
+        typer.Option(
+            "--version",
+            callback=_version_callback,
+            is_eager=True,
+            help="Show the PhantomKey version and exit.",
+        ),
+    ] = None,
+) -> None:
+    """AI-native password manager for AI agents."""
+
+
 @app.command()
 def init(
     no_recovery: Annotated[bool, typer.Option("--no-recovery", help="Skip recovery phrase generation")] = False,
