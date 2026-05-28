@@ -45,6 +45,9 @@ dev = [
     "respx>=0.21",
     "pytest-cov>=5.0",
 ]
+browser = [
+    "playwright>=1.40",
+]
 
 [project.scripts]
 phantomkey = "phantomkey.cli:app"

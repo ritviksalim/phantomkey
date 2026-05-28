@@ -206,6 +206,49 @@ class TestUpdate:
         assert result.exit_code == 0
 
 
+class TestExecBrowser:
+    def _fake_browser_module(self, monkeypatch, calls):
+        from contextlib import contextmanager
+        from phantomkey.executor import browser_playwright
+
+        class FakeDriver:
+            def navigate(self, url):
+                calls.append(("navigate", url))
+
+            def fill(self, selector, value):
+                calls.append(("fill", selector, value))
+
+            def click(self, selector):
+                calls.append(("click", selector))
+
+            def text_content(self, selector):
+                return ""
+
+        @contextmanager
+        def fake_browser(headless=True):
+            yield FakeDriver()
+
+        monkeypatch.setattr(browser_playwright, "playwright_browser", fake_browser)
+
+    def test_exec_browser_blind_injection(self, runner, app, initialized_env, monkeypatch):
+        runner.invoke(app, ["add", "site", "--field", "password=p@ss"], env=initialized_env)
+        calls = []
+        self._fake_browser_module(monkeypatch, calls)
+        result = runner.invoke(
+            app,
+            ["exec-browser", "--actions",
+             '[{"action":"fill","selector":"#pw","value":"{{site.password}}"}]'],
+            env=initialized_env,
+        )
+        assert result.exit_code == 0
+        assert ("fill", "#pw", "p@ss") in calls
+        assert "p@ss" not in result.output
+
+    def test_exec_browser_invalid_json(self, runner, app, initialized_env):
+        result = runner.invoke(app, ["exec-browser", "--actions", "not json"], env=initialized_env)
+        assert result.exit_code != 0
+
+
 class TestVersion:
     def test_version_flag_exits_zero(self, runner, app):
         result = runner.invoke(app, ["--version"])

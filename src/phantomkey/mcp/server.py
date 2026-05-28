@@ -122,6 +122,29 @@ def create_server(
                     "required": ["url"],
                 },
             ),
+            Tool(
+                name="phantomkey_browser",
+                description=(
+                    "Drive a browser through a sequence of actions with blind credential "
+                    "injection. Each action is an object: "
+                    '{"action": "navigate"|"fill"|"click"|"read", ...}. {{cred.field}} '
+                    "placeholders in navigate URLs and fill values are resolved from the "
+                    "vault — the real value reaches the browser, never this response. "
+                    "Requires the optional 'browser' extra."
+                ),
+                inputSchema={
+                    "type": "object",
+                    "properties": {
+                        "actions": {
+                            "type": "array",
+                            "description": "Ordered browser actions; fill/navigate values may contain {{cred.field}} placeholders.",
+                            "items": {"type": "object"},
+                        },
+                        "headless": {"type": "boolean", "description": "Run the browser headless", "default": True},
+                    },
+                    "required": ["actions"],
+                },
+            ),
         ]
 
     @server.call_tool()
@@ -141,6 +164,8 @@ def create_server(
                 return _handle_delete(arguments)
             elif name == "phantomkey_exec":
                 return _handle_exec(arguments)
+            elif name == "phantomkey_browser":
+                return _handle_browser(arguments)
             else:
                 return [TextContent(type="text", text=f"Unknown tool: {name}")]
         except Exception as e:
@@ -230,5 +255,13 @@ def create_server(
             "status_code": result["status_code"],
             "body": result["body"],
         }))]
+
+    def _handle_browser(args: dict) -> list[TextContent]:
+        from phantomkey.executor.browser import execute_browser
+        from phantomkey.executor.browser_playwright import playwright_browser
+
+        with playwright_browser(headless=args.get("headless", True)) as driver:
+            result = execute_browser(vault, args["actions"], driver)
+        return [TextContent(type="text", text=json.dumps(result))]
 
     return server

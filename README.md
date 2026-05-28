@@ -109,7 +109,7 @@ Add PhantomKey to your Claude Desktop / Cursor / Cline config:
 }
 ```
 
-The agent now has access to seven tools (`phantomkey_status`, `phantomkey_list`, `phantomkey_get_meta`, `phantomkey_add`, `phantomkey_update`, `phantomkey_delete`, `phantomkey_exec`). The first six expose only metadata. The seventh executes templated HTTP requests with blind injection.
+The agent now has access to eight tools (`phantomkey_status`, `phantomkey_list`, `phantomkey_get_meta`, `phantomkey_add`, `phantomkey_update`, `phantomkey_delete`, `phantomkey_exec`, `phantomkey_browser`). The first six expose only metadata. `phantomkey_exec` executes templated HTTP requests with blind injection; `phantomkey_browser` drives a browser through templated form actions with the same blind injection (requires the optional `browser` extra).
 
 > **Detailed setup:** see [`docs/mcp-integration.md`](docs/mcp-integration.md).
 
@@ -128,6 +128,7 @@ The agent now has access to seven tools (`phantomkey_status`, `phantomkey_list`,
 | `phantomkey update NAME --field k=v` | Update fields on an existing credential |
 | `phantomkey rm NAME` | Delete a credential |
 | `phantomkey exec-http --url ... --header ...` | Execute HTTP with blind injection |
+| `phantomkey exec-browser --actions '[...]'` | Execute browser form actions with blind injection (needs `phantomkey[browser]`) |
 
 ---
 

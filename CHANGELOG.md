@@ -13,7 +13,12 @@ PhantomKey is pre-1.0; the public API may change between minor versions until v1
 
 ### Added
 
+- Browser executor — blind credential injection for web forms ([#14](https://github.com/ritviksalim/phantomkey/issues/14)). New `phantomkey_browser` MCP tool and `phantomkey exec-browser` CLI command run a sequence of browser actions (`navigate` / `fill` / `click` / `read`) with `{{cred.field}}` placeholders resolved into the browser, never into the agent's context. Backed by Playwright via the optional `browser` extra (`pip install 'phantomkey[browser]'`).
 - `phantomkey --version` flag — prints the installed version and exits. Previously `bug_report.yml` and `CONTRIBUTING.md` referenced this command, but it was not implemented.
+
+### Security
+
+- `docs/threat-model.md` extended for the browser executor — new §5.8 (browser-based blind injection) and weaknesses W-9 (screenshot pixel leakage) and W-10 (hostile page reading the DOM value).
 
 ---
 
